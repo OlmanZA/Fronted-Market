@@ -1,4 +1,4 @@
-package CryptoFront.Front.Service;
+package CryptoFront.Front.WebService;
 
 import java.io.IOException;
 import java.util.Optional;

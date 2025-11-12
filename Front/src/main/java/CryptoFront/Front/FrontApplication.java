@@ -1,8 +1,8 @@
 package CryptoFront.Front;
 
 import CryptoFront.Front.Controller.UsuarioController;
-import CryptoFront.Front.Service.Impl.ApiServiceImpl;
-import CryptoFront.Front.Service.Impl.UsuarioServiceImpl;
+import CryptoFront.Front.WebService.Impl.ApiServiceImpl;
+import CryptoFront.Front.WebService.Impl.UsuarioServiceImpl;
 import CryptoFront.Front.Ui.MenuInicio;
 
 public class FrontApplication {

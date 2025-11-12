@@ -1,8 +1,8 @@
-package CryptoFront.Front.Service.Impl;
+package CryptoFront.Front.WebService.Impl;
 
 import CryptoFront.Front.Dtos.LoginResponse;
-import CryptoFront.Front.Service.ApiService;
-import CryptoFront.Front.Service.UsuarioService;
+import CryptoFront.Front.WebService.ApiService;
+import CryptoFront.Front.WebService.UsuarioService;
 import CryptoFront.Front.entities.Usuario;
 
 import java.io.IOException;

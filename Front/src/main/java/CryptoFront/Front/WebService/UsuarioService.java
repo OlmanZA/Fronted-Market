@@ -1,4 +1,4 @@
-package CryptoFront.Front.Service;
+package CryptoFront.Front.WebService;
 
 import CryptoFront.Front.Dtos.LoginResponse;
 import CryptoFront.Front.entities.Usuario;

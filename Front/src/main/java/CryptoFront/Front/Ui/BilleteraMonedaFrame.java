@@ -5,9 +5,9 @@ import CryptoFront.Front.Controller.BilleteraMonedaController;
 import CryptoFront.Front.Controller.MonedaController;
 import CryptoFront.Front.Controller.UsuarioController;
 import CryptoFront.Front.Dtos.BilleteraMonedaDto;
-import CryptoFront.Front.Service.ApiService;
-import CryptoFront.Front.Service.Impl.ApiServiceImpl;
-import CryptoFront.Front.Service.Impl.MonedaServiceImpl;
+import CryptoFront.Front.WebService.ApiService;
+import CryptoFront.Front.WebService.Impl.ApiServiceImpl;
+import CryptoFront.Front.WebService.Impl.MonedaServiceImpl;
 import CryptoFront.Front.entities.Billetera;
 import CryptoFront.Front.entities.Moneda;
 
@@ -104,6 +104,7 @@ public class BilleteraMonedaFrame extends JFrame {
         setVisible(true);
     }
 
+    // 🔹 Cargar billeteras del usuario
     private void cargarBilleteras() {
         billeteraListModel.clear();
         List<Billetera> billeteras = billeteraController.listarBilleterasPorUsuario(cedulaUsuario);
@@ -115,6 +116,7 @@ public class BilleteraMonedaFrame extends JFrame {
         }
     }
 
+    // 🔹 Listar monedas de la billetera seleccionada
     private void listarMonedas() {
         Billetera billetera = listaBilleteras.getSelectedValue();
         if (billetera == null) {
@@ -126,7 +128,8 @@ public class BilleteraMonedaFrame extends JFrame {
         List<BilleteraMonedaDto> todasLasMonedas = billeteraMonedaController.listar();
 
         List<BilleteraMonedaDto> monedasDeLaBilletera = todasLasMonedas.stream()
-                .filter(m -> m.getBilleteraId().equals(billetera.getNumeroBilletera()))
+                .filter(m -> m.getBilleteraId() != null &&
+                        m.getBilleteraId().equals(billetera.getNumeroBilletera()))
                 .collect(Collectors.toList());
 
         if (monedasDeLaBilletera.isEmpty()) {
@@ -136,6 +139,7 @@ public class BilleteraMonedaFrame extends JFrame {
         }
     }
 
+    // 🔹 Depositar o retirar
     private void realizarOperacion(boolean esDeposito) {
         Billetera billetera = listaBilleteras.getSelectedValue();
         if (billetera == null) {
@@ -155,8 +159,10 @@ public class BilleteraMonedaFrame extends JFrame {
 
             if (esDeposito) {
                 billeteraMonedaController.depositar(billetera.getNumeroBilletera(), monedaId, monto);
+                JOptionPane.showMessageDialog(this, "Depósito realizado con éxito.");
             } else {
                 billeteraMonedaController.retirar(billetera.getNumeroBilletera(), monedaId, monto);
+                JOptionPane.showMessageDialog(this, "Retiro realizado con éxito.");
             }
 
             listarMonedas();
@@ -164,9 +170,13 @@ public class BilleteraMonedaFrame extends JFrame {
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error en los datos ingresados. Verifique que sean números válidos.",
                     "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al realizar la operación: " + ex.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
+    // 🔹 Crear una nueva moneda en el sistema
     private void crearMoneda() {
         String nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre de la moneda:");
         if (nombre == null || nombre.isBlank()) return;
@@ -178,7 +188,6 @@ public class BilleteraMonedaFrame extends JFrame {
         moneda.setNombre(nombre);
         moneda.setSimbolo(simbolo);
 
-        // ⚙️ Crear el controlador de moneda con la URL del backend
         ApiService apiService = new ApiServiceImpl("http://localhost:8080");
         MonedaController monedaController = new MonedaController(new MonedaServiceImpl(apiService));
 

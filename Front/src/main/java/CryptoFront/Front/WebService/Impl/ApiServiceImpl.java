@@ -1,6 +1,6 @@
-package CryptoFront.Front.Service.Impl;
+package CryptoFront.Front.WebService.Impl;
 
-import CryptoFront.Front.Service.ApiService;
+import CryptoFront.Front.WebService.ApiService;
 import com.google.gson.Gson;
 
 import java.io.IOException;

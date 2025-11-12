@@ -1,4 +1,4 @@
-package CryptoFront.Front.Service;
+package CryptoFront.Front.WebService;
 
 import CryptoFront.Front.Dtos.BilleteraResponse;
 import CryptoFront.Front.entities.Billetera;
@@ -13,4 +13,8 @@ public interface BilleteraService {
 
     List<Billetera> listarBilleterasPorUsuario(Long cedulaUsuario)
             throws IOException, InterruptedException;
+
+    List<BilleteraResponse> obtenerSaldosPorUsuario(Long cedulaUsuario)
+            throws IOException, InterruptedException;
+
 }

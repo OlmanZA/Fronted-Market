@@ -1,8 +1,8 @@
-package CryptoFront.Front.Service.Impl;
+package CryptoFront.Front.WebService.Impl;
 
 import CryptoFront.Front.Dtos.BilleteraResponse;
-import CryptoFront.Front.Service.ApiService;
-import CryptoFront.Front.Service.BilleteraService;
+import CryptoFront.Front.WebService.ApiService;
+import CryptoFront.Front.WebService.BilleteraService;
 import CryptoFront.Front.entities.Billetera;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -32,6 +32,7 @@ public class BilleteraServiceImpl implements BilleteraService {
         return apiService.post(endpoint, billetera, BilleteraResponse.class);
     }
 
+
     @Override
     public List<Billetera> listarBilleterasPorUsuario(Long cedulaUsuario)
             throws IOException, InterruptedException {
@@ -55,4 +56,27 @@ public class BilleteraServiceImpl implements BilleteraService {
         }
         return Collections.emptyList();
     }
+
+    @Override
+    public List<BilleteraResponse> obtenerSaldosPorUsuario(Long cedulaUsuario)
+            throws IOException, InterruptedException {
+
+        String endpoint = apiService.getBaseUrl() + "/Crypto/saldos/" + cedulaUsuario;
+
+        try {
+            URL url = new URL(endpoint);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            if (conn.getResponseCode() == 200) {
+                Type listType = new TypeToken<List<BilleteraResponse>>() {}.getType();
+                return gson.fromJson(new java.io.InputStreamReader(conn.getInputStream()), listType);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Collections.emptyList();
+    }
+
 }

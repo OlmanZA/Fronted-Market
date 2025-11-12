@@ -1,6 +1,6 @@
 package CryptoFront.Front.Controller;
 
-import CryptoFront.Front.Service.MonedaService;
+import CryptoFront.Front.WebService.MonedaService;
 import CryptoFront.Front.entities.Moneda;
 
 import javax.swing.*;

@@ -23,4 +23,13 @@ public class BilleteraResponse {
 
     public Billetera getBilletera() { return billetera; }
     public void setBilletera(Billetera billetera) { this.billetera = billetera; }
+
+    @Override
+    public String toString() {
+        if (billetera != null) {
+            return billetera.getNombre() + " (N° " + billetera.getNumeroBilletera() + ")";
+        }
+        return "Sin billetera";
+    }
+
 }

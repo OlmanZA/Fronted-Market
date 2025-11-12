@@ -1,7 +1,7 @@
-package CryptoFront.Front.Service.Impl;
+package CryptoFront.Front.WebService.Impl;
 
-import CryptoFront.Front.Service.MonedaService;
-import CryptoFront.Front.Service.ApiService;
+import CryptoFront.Front.WebService.MonedaService;
+import CryptoFront.Front.WebService.ApiService;
 import CryptoFront.Front.entities.Moneda;
 
 import java.io.IOException;

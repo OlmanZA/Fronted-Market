@@ -1,4 +1,4 @@
-package CryptoFront.Front.Service;
+package CryptoFront.Front.WebService;
 
 import CryptoFront.Front.entities.Moneda;
 import java.io.IOException;

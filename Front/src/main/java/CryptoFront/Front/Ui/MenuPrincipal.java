@@ -3,9 +3,9 @@ package CryptoFront.Front.Ui;
 import CryptoFront.Front.Controller.BilleteraController;
 import CryptoFront.Front.Controller.BilleteraMonedaController;
 import CryptoFront.Front.Controller.UsuarioController;
-import CryptoFront.Front.Service.Impl.ApiServiceImpl;
-import CryptoFront.Front.Service.Impl.BilleteraMonedaServiceImpl;
-import CryptoFront.Front.Service.Impl.BilleteraServiceImpl;
+import CryptoFront.Front.WebService.Impl.ApiServiceImpl;
+import CryptoFront.Front.WebService.Impl.BilleteraMonedaServiceImpl;
+import CryptoFront.Front.WebService.Impl.BilleteraServiceImpl;
 
 import javax.swing.*;
 import java.awt.*;

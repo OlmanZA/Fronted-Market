@@ -1,7 +1,7 @@
 package CryptoFront.Front.Controller;
 
 import CryptoFront.Front.Dtos.LoginResponse;
-import CryptoFront.Front.Service.UsuarioService;
+import CryptoFront.Front.WebService.UsuarioService;
 import CryptoFront.Front.entities.Usuario;
 
 import javax.swing.*;

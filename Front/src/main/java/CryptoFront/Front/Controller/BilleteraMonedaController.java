@@ -1,7 +1,7 @@
 package CryptoFront.Front.Controller;
 
 import CryptoFront.Front.Dtos.BilleteraMonedaDto;
-import CryptoFront.Front.Service.BilleteraMonedaService;
+import CryptoFront.Front.WebService.BilleteraMonedaService;
 
 import javax.swing.*;
 import java.util.List;
@@ -18,7 +18,7 @@ public class BilleteraMonedaController {
         try {
             return service.listar();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al listar monedas: " + e.getMessage(),
+            JOptionPane.showMessageDialog(null, "❌ Error al listar monedas: " + e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
             return List.of();
         }
@@ -26,9 +26,14 @@ public class BilleteraMonedaController {
 
     public BilleteraMonedaDto crearBilleteraMoneda(BilleteraMonedaDto dto) {
         try {
-            return service.crearBilleteraMoneda(dto);
+            BilleteraMonedaDto result = service.crearBilleteraMoneda(dto);
+            if (result != null) {
+                JOptionPane.showMessageDialog(null, "✅ Moneda agregada a la billetera correctamente.",
+                        "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            }
+            return result;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al crear billetera-moneda: " + e.getMessage(),
+            JOptionPane.showMessageDialog(null, "❌ Error al crear billetera-moneda: " + e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
@@ -38,11 +43,11 @@ public class BilleteraMonedaController {
         try {
             BilleteraMonedaDto result = service.depositar(billeteraId, monedaId, monto);
             if (result != null) {
-                JOptionPane.showMessageDialog(null, "✅ Depósito exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "✅ Depósito exitoso.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
             return result;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al depositar: " + e.getMessage(),
+            JOptionPane.showMessageDialog(null, "❌ Error al depositar: " + e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
@@ -52,11 +57,11 @@ public class BilleteraMonedaController {
         try {
             BilleteraMonedaDto result = service.retirar(billeteraId, monedaId, monto);
             if (result != null) {
-                JOptionPane.showMessageDialog(null, "✅ Retiro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "✅ Retiro exitoso.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
             return result;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al retirar: " + e.getMessage(),
+            JOptionPane.showMessageDialog(null, "❌ Error al retirar: " + e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
